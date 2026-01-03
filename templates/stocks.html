@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block content %}
+     <h1>Top 100 Indian Stocks</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Symbol</th>
+                <th>Company Name</th>
+                <th>Price</th>
+                <th>Market Cap</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for stock in stocks %}
+            <tr>
+                <td>{{ stock.symbol }}</td>
+                <td>{{ stock.shortName }}</td>
+                <td>₹{{ stock.regularMarketPrice }}</td>
+                <td>{{ stock.marketCap }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

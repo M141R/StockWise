@@ -1,0 +1,57 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.env
+*.venv
+venv/
+env/
+ENV/
+
+# Flask
+instance/
+*.db
+*.sqlite3
+
+# VS Code
+.vscode/
+
+# Windows
+Thumbs.db
+Desktop.ini
+
+# Logs
+*.log
+
+# Environment variables
+.env
+
+# MacOS
+.DS_Store
+
+# Pip
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Test and coverage
+htmlcov/
+.tox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+*.py,cover
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# Other
+*.bak
+*.swp
+*.swo
+
+# Ignore requirements.txt freeze output if not needed
+# requirements.txt

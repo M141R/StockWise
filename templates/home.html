@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h1>Hello World!!!</h1>
+<ul>
+<li><a href="{{url_for('stocks')}}">Stocks</a></li>
+<li><a href="{{url_for('debug_data')}}">JSON Data</a></li>
+</ul>
+
+{% endblock %}
