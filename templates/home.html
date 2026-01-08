@@ -7,4 +7,9 @@
 <li><a href="{{url_for('debug_data')}}">JSON Data</a></li>
 </ul>
 
+<form action="{{url_for("hello_world")}}" method="post">
+<input type="number" id="user_budget" name="user_budget">
+<button type="submit">Submit</button>
+</form>
+
 {% endblock %}
