@@ -12,4 +12,18 @@
 <button type="submit">Submit</button>
 </form>
 
+
+{% for risk_level, stocks in recommendations.items() %}
+<h2>{{ risk_level }}</h2>
+<ul>
+{% for stock in stocks %}
+    <li>
+        Symbol: {{ stock.symbol }} | 
+        Score: {{ stock.score }} | 
+        Volatility: {{ stock.volatility }}
+    </li>
+{% endfor %}
+</ul>
+{% endfor %}
+
 {% endblock %}

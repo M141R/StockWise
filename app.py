@@ -8,11 +8,12 @@ app = Flask(__name__)
 
 @app.route("/", methods=['GET','POST'])
 def hello_world():
+    result = {}
     if request.method == 'POST':
         user_budget = request.form.get("user_budget")
         print(user_budget)
         result = stock_analyzer(user_budget)
-    return render_template('home.html')
+    return render_template('home.html',recommendations=result)
 
 @app.route("/debug")
 def debug_data():

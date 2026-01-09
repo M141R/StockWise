@@ -13,7 +13,7 @@ def stock_analyzer(user_budget):
     stock_list = response.get('quotes', [])
     df = pd.DataFrame(stock_list)
     df_filtered = df[df['regularMarketPreviousClose'] <= float(user_budget)*(0.85)]
-    df_filtered.to_csv('filtered.csv')
+    # df_filtered.to_csv('filtered.csv')
     # df.to_csv('marketdata.csv')
     # print(df_filtered.columns)
     results = []
@@ -52,8 +52,15 @@ def stock_analyzer(user_budget):
             'drawdown': float(drawdown.min()),
             'score': score
         })
-    print(results)
-        
-    
-stock_analyzer(5000)
+    results_df = pd.DataFrame(results)
+    results_df = results_df.sort_values('score', ascending=False)
+    results_df['risk_category'] = pd.cut(results_df['score'], 
+                                      bins=[0, 70, 90, 200], 
+                                      labels=['High Risk', 'Medium Risk', 'Low Risk'])
+    # print(results_df)
+    # results_df.to_csv('Risk_Alloted.csv')
+    recommendations = {}
+    for risk_level in ['Low Risk', 'Medium Risk', 'High Risk']:
+        recommendations[risk_level] = results_df[results_df['risk_category'] == risk_level].head(5).to_dict('records')
+    return recommendations
     
