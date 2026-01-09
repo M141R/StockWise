@@ -1,16 +1,13 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<h1>Hello World!!!</h1>
-<ul>
-<li><a href="{{url_for('stocks')}}">Stocks</a></li>
-<li><a href="{{url_for('debug_data')}}">JSON Data</a></li>
-</ul>
-
+<h1>Hello</h1>
+<p>Enter your investment amount</p>
 <form action="{{url_for("hello_world")}}" method="post">
 <input type="number" id="user_budget" name="user_budget">
 <button type="submit">Submit</button>
 </form>
+<p>After entering the amount it may take a while to get the results</p>
 
 
 {% for risk_level, stocks in recommendations.items() %}
