@@ -55,12 +55,15 @@ def stock_analyzer(user_budget):
     results_df = pd.DataFrame(results)
     results_df = results_df.sort_values('score', ascending=False)
     results_df['risk_category'] = pd.cut(results_df['score'], 
-                                      bins=[0, 70, 90, 200], 
+                                      bins=[-50, 70, 90, 200], 
                                       labels=['High Risk', 'Medium Risk', 'Low Risk'])
-    results_df['Company_name'] = df_filtered['shortName'].values
-    results_df['Company_longname'] = df_filtered['longName'].values
+    symbol_to_shortname = df_filtered.set_index('symbol')['shortName'].to_dict()
+    symbol_to_longname = df_filtered.set_index('symbol')['longName'].to_dict()
+    
+    results_df['Company_name'] = results_df['symbol'].map(symbol_to_shortname)
+    results_df['Company_longname'] = results_df['symbol'].map(symbol_to_longname)
     # print(results_df)
-    # results_df.to_csv('Risk_Alloted.csv')
+    results_df.to_csv('Risk_Alloted.csv')
     recommendations = {}
     for risk_level in ['Low Risk', 'Medium Risk', 'High Risk']:
         recommendations[risk_level] = results_df[results_df['risk_category'] == risk_level].head(5).to_dict('records')
