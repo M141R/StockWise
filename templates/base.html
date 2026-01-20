@@ -1,12 +1,22 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{{title}}</title>
-</head>
-<body>
-    {%block content%}
-    {% endblock %}
-</body>
+  </head>
+  <body>
+    <nav>
+      <a href="#"></a>
+      <div class="links">
+        <div class="div">Logo</div>
+        <a href="{{ url_for('hello_world') }}">Home</a>
+        <a href="{{ url_for('stocks') }}">Stocks</a>
+        <a href="#">App</a>
+        <a href="#">Sign up</a>
+      </div>
+    </nav>
+    {%block content%} {% endblock %}
+    <footer>Footer</footer>
+  </body>
 </html>

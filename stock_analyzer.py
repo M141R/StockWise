@@ -6,9 +6,9 @@ def stock_analyzer(user_budget):
     High_q = EquityQuery('and', [
             EquityQuery('is-in',['exchange','NSI']),
             EquityQuery('eq', ['region', 'in']),
-            EquityQuery('gt', ['intradaymarketcap', 1000000000])
+            # EquityQuery('gt', ['intradaymarketcap', 1000000000])
         ])
-    response = yf.screen(High_q, sortField='intradaymarketcap', sortAsc=False, size=100)
+    response = yf.screen(High_q, sortField='intradaymarketcap', sortAsc=False, size=250)
         
     stock_list = response.get('quotes', [])
     df = pd.DataFrame(stock_list)
@@ -57,6 +57,8 @@ def stock_analyzer(user_budget):
     results_df['risk_category'] = pd.cut(results_df['score'], 
                                       bins=[0, 70, 90, 200], 
                                       labels=['High Risk', 'Medium Risk', 'Low Risk'])
+    results_df['Company_name'] = df_filtered['shortName'].values
+    results_df['Company_longname'] = df_filtered['longName'].values
     # print(results_df)
     # results_df.to_csv('Risk_Alloted.csv')
     recommendations = {}
@@ -64,3 +66,4 @@ def stock_analyzer(user_budget):
         recommendations[risk_level] = results_df[results_df['risk_category'] == risk_level].head(5).to_dict('records')
     return recommendations
     
+# stock_analyzer(5000)
