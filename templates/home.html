@@ -5,10 +5,61 @@
     <h1>Trouble Investing In Stocks?</h1>
     <p>We analyse the stocks and pick the perfect 5 for you. No jargon just smart picks</p>
     <form action="{{url_for("app_page")}}" method="post">
-    <input type="number" id="user_budget" name="user_budget" placeholder="Enter Investment">
-    <button type="submit">Submit</button>
+        <input type="number" id="user_budget" name="user_budget" placeholder="Enter Investment">
+        <button class="btn" type="submit">Submit</button>
     </form>
 
+</section>
+<section class="feature">
+    <h2>How it works?</h2>
+    <div class="cards">
+        <div class="card">
+            <h3>Smart Market Insights</h3>
+            <p>We analyze stocks using volatility, trend
+                strength, and market capiatiaization to
+                help you understand risk before you invest
+            </p>
+        </div>
+        <div class="card">
+            <h3>Trend-Based Analysis</h3>
+            <p>Stocks are evaluated based of their
+                position relative of key moving averages
+                to identify bullish, bearihs, or sadways
+                trends.
+            </p>
+        </div>
+        <div class="card">
+            <h3>Volataility Assessment</h3>
+            <p>We measure daily price changes to understand
+                how much hw much a stock fluctsates, helping
+                investors investors judge i stability vestrus
+                opportunity.
+            </p>
+        </div>
+        <div class="card">
+            <h3>Risk-Aware Categorization</h3>
+            <p>Our system intelligently classifies stocks
+                into risk categories, enabling
+                smarter decision-meision-maiking aligned
+                with your investment goals.
+            </p>
+        </div>
+        <div class="card">
+            <h3>Investor Focused Insights</h3>
+            <p>Instead if raw numbers, we deliver clear,
+                actiionale insights that explain what the
+                data means - not just what it shows.
+            </p>
+        </div>
+        <div class="card">
+            <h3>FYI</h3>
+            <p>All insights are generated
+                using quantiitative analysis
+                on real market data for
+                informed investing.
+            </p>
+        </div>
+    </div>
 </section>
 
 {% endblock %}

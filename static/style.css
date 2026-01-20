@@ -88,6 +88,18 @@ main {
   padding: 0 30px;
 }
 
+section {
+  margin: 20px 0;
+}
+
+.btn {
+  padding: 5px 10px;
+  background: var(--primary_col_1);
+  border: 0;
+  font-weight: 600;
+  color: var(--primary_col_3);
+}
+
 /* Navbar */
 
 nav {
@@ -108,16 +120,45 @@ nav {
 /* Hero Section */
 
 .hero {
-  padding: 50px 0;
+  padding: 80px 0;
   text-align: center;
+  border-bottom: 2px dashed var(--secondary_col_1);
 }
 
 .hero input {
   background: var(--primary_col_2);
   padding: 5px;
+  color: var(--secondary_col_1);
   border: 0;
+  border-bottom: 2px dashed var(--secondary_col_1);
 }
 
 .hero form {
   margin-top: 15px;
+}
+
+.hero .btn {
+  margin-left: 10px;
+}
+
+/* Insigts Section */
+.cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  margin-top: 10px;
+}
+
+.card{
+  text-align: center;
+  padding: 20px;
+  border-right: 2px dashed var(--secondary_col_1);
+  border-bottom: 2px dashed var(--secondary_col_1);
+}
+
+.card:nth-child(3n){
+  border-right: none;
+}
+
+.card:nth-last-child(-n + 3) {
+  border-bottom: none;
 }
