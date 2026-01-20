@@ -1,26 +1,14 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<h1>Hello</h1>
-<p>Enter your investment amount</p>
-<form action="{{url_for("hello_world")}}" method="post">
-<input type="number" id="user_budget" name="user_budget">
-<button type="submit">Submit</button>
-</form>
-<p>After entering the amount it may take a while to get the results</p>
+<section class="hero">
+    <h1>Trouble Investing In Stocks?</h1>
+    <p>We analyse the stocks and pick the perfect 5 for you. No jargon just smart picks</p>
+    <form action="{{url_for("app_page")}}" method="post">
+    <input type="number" id="user_budget" name="user_budget" placeholder="Enter Investment">
+    <button type="submit">Submit</button>
+    </form>
 
-
-{% for risk_level, stocks in recommendations.items() %}
-<h2>{{ risk_level }}</h2>
-<ul>
-{% for stock in stocks %}
-    <li>
-        Company: {{ stock.Company_name }} | 
-        Score: {{ stock.score }} | 
-        Volatility: {{ stock.volatility }}
-    </li>
-{% endfor %}
-</ul>
-{% endfor %}
+</section>
 
 {% endblock %}

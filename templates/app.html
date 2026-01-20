@@ -1,0 +1,27 @@
+{% extends 'base.html' %} {% block content %}
+
+<form action="{{url_for('app_page')}}" method="post">
+  <input
+    type="number"
+    id="user_budget"
+    name="user_budget"
+    placeholder="Enter your budget"
+    required
+  />
+  <button type="submit">Submit</button>
+</form>
+
+{% if recommendations %} {% for risk_level, stocks in recommendations.items() %}
+<h2>{{ risk_level }}</h2>
+<ul>
+  {% for stock in stocks %}
+  <li>
+    Company: {{ stock.Company_name }} | Symbol: {{ stock.symbol }} | Score: {{
+    stock.score }} | Volatility: {{ stock.volatility|round(4) }} | Trade Type:
+    {{ stock['trade type'] }}
+  </li>
+  {% endfor %}
+</ul>
+{% endfor %} {% else %}
+<p>Enter your budget above to get stock recommendations.</p>
+{% endif %} {% endblock content %}

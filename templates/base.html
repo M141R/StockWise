@@ -9,18 +9,19 @@
       href="{{url_for('static', filename = 'style.css')}}"
     />
   </head>
+
   <body>
     <nav>
-      <a href="#"></a>
+      <div>
+        <a href="{{ url_for('hello_world') }}">Logo</a>
+      </div>
       <div class="links">
-        <div class="div">Logo</div>
         <a href="{{ url_for('hello_world') }}">Home</a>
-        <a href="{{ url_for('stocks') }}">Stocks</a>
-        <a href="#">App</a>
+        <a href="{{ url_for('app_page') }}">App</a>
         <a href="#">Sign up</a>
       </div>
     </nav>
-    {%block content%} {% endblock %}
+    <main>{%block content%} {% endblock %}</main>
     <footer>Footer</footer>
   </body>
 </html>
