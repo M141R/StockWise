@@ -121,32 +121,29 @@ Contains the core logic for:
 HTML files for rendering the frontend UI.
 
 
-## **FEATURES**:
+##  **FEATURES**:
 
- ### 1) Stock Filtering:
+ ## 1) Stock Filtering:
 
-  Filters stocks based on user-defined investment budget.
-  Only affordable stocks are considered for further analysis.
+  ### Filters stocks based on user-defined investment budget.Only affordable stocks are considered for further analysis.
+
 --------------------------------------------------------------------------------------------------
 
-### 2)Risk-Aware Categorization:
+## 2)Risk-Aware Categorization:
 
- Classifies stocks into Low, Medium, and High risk categories.
- Uses volatility, drawdown, and trend behavior.
+ ### Classifies stocks into Low, Medium, and High risk categories.Uses volatility, drawdown, and trend behavior.
 --------------------------------------------------------------------------------------------------
 
-### 3)Trend-Based Analysis:
-Uses Simple Moving Average (SMA) and Exponential Moving Average (EMA).
-Identifies Bullish, Bearish, or Sideways trends.
+## 3)Trend-Based Analysis:
+### Uses Simple Moving Average (SMA) and Exponential Moving Average (EMA).Identifies Bullish, Bearish, or Sideways trends.
 --------------------------------------------------------------------------------------------------
 
-### 4)Volatility Assessment:
-Measures daily price fluctuations.
-Helps users judge stability vs opportunity.
+## 4)Volatility Assessment:
+### Measures daily price fluctuations. Helps users judge stability vs opportunity.
 --------------------------------------------------------------------------------------------------
-### 5)Market Capitalization Classification:
+## 5)Market Capitalization Classification:
 
-#### Stocks grouped into:
+### Stocks grouped into:
 
 *Large-cap
 
@@ -168,5 +165,4 @@ Helps users judge stability vs opportunity.
 
  # **DISCLAIMER:**
 
-This project is developed solely for academic and IEEE evaluation purposes.
-It does not provide financial advice and should not be used for actual trading decisions.
+###  This project is developed solely for academic and IEEE evaluation purposes. It does not provide financial advice and should not be used for actual trading decisions.
