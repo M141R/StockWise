@@ -1,13 +1,18 @@
 {% extends 'base.html' %} {% block content %}
 
+<section class="app">
 <form action="{{url_for('app_page')}}" method="post">
+  <div class="invest">
+  <h1>Your Investment : </h1>
   <input
-    type="number"
-    id="user_budget"
-    name="user_budget"
-    placeholder="Enter your budget"
-    required
+  type="number"
+  id="user_budget"
+  name="user_budget"
+  placeholder="Enter your budget"
+  required
   />
+  </div>
+  <h1>Risk Apetite : </h1>
   <button type="submit">Submit</button>
 </form>
 
@@ -24,4 +29,6 @@
 </ul>
 {% endfor %} {% else %}
 <p>Enter your budget above to get stock recommendations.</p>
-{% endif %} {% endblock content %}
+{% endif %} 
+</section>
+{% endblock content %}

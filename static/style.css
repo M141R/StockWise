@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Jersey+20&display=swap');
+
 * {
   padding: 0;
   margin: 0;
@@ -27,52 +29,56 @@ p {
   font-size: 1em;
 }
 
+
+html {font-size: 16px;}
+
+body {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: false;
+  line-height: 1.65;
+}
+
+p {
+  font-size: 1em;
+}
+
 h1,
 h2,
 h3,
 h4,
 h5 {
-  font-family: "Open Sans", sans-serif;
+  font-family: 'Open Sans', sans-serif;
   font-weight: true;
   line-height: 1.15;
 }
 
 h1,
 .text-size-h1 {
-  font-family: "Inter", sans-serif;
+  font-family: "Jersey 20", sans-serif;
   font-weight: 700;
   margin-top: 0;
-  font-size: 5.65em;
+  font-size: 4.21em;
 }
 
 h2,
-.text-size-h2 {
-  font-size: 4em;
-}
+.text-size-h2 { font-size: 3.16em; }
 
 h3,
-.text-size-h3 {
-  font-size: 2.83em;
-}
+.text-size-h3 { font-size: 2.37em; }
 
 h4,
-.text-size-h4 {
-  font-size: 2em;
-}
+.text-size-h4 { font-size: 1.78em; }
 
 h5,
-.text-size-h5 {
-  font-size: 1.41em;
-}
+.text-size-h5 { font-size: 1.33em; }
 
-.text-caption {
-  font-size: 0.71em;
-}
+.text-caption { font-size: 0.75em; }
 
 small,
 .text-small {
-  font-size: 0.5em;
+  font-size: 0.56em;
 }
+              
 
 body {
   color: var(--primary_col_3);
@@ -90,6 +96,11 @@ main {
 
 section {
   margin: 20px 0;
+}
+
+img{
+  width: 100%;
+  object-fit: cover;
 }
 
 .btn {
@@ -161,4 +172,22 @@ nav {
 
 .card:nth-last-child(-n + 3) {
   border-bottom: none;
+}
+
+.card img{
+  filter: invert(1);
+  width: 100px;
+}
+
+/* APP Page */
+.invest{
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.app input{
+  width: 300px;
+  padding: 10px 0;
+  margin-top: 10px;
 }
