@@ -18,7 +18,11 @@
       <div class="links">
         <a href="{{ url_for('hello_world') }}">Home</a>
         <a href="{{ url_for('app_page') }}">App</a>
-        <a href="#">Sign up</a>
+        {% if not session.get('user') %}
+        <a href="{{ url_for('signup') }}">Sign up</a>
+        {% else %}
+        <a href="{{ url_for('logout') }}">Logout</a>
+        {% endif %}
       </div>
     </nav>
     <main>{%block content%} {% endblock %}</main>

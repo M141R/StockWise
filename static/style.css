@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Gentium+Book+Plus:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Jersey+20&display=swap");
 
 * {
   padding: 0;
@@ -7,18 +7,34 @@
 }
 
 :root {
-  --primary_col_1: #55aacc;
-  --primary_col_2: #101010;
-  --primary_col_3: #f4f4f4;
+  --primary_col_1: #074a4c;
+  --primary_col_2: #031e1f;
+  --primary_col_3: #f2f1eb;
   --secondary_col_1: #656565;
 }
 
 /* Type_Scale */
 
-html {font-size: 16px;}
+html {
+  font-size: 16px;
+}
 
 body {
-  font-family: 'Open Sans', sans-serif;
+  font-family: "Open Sans", sans-serif;
+  font-weight: false;
+  line-height: 1.65;
+}
+
+p {
+  font-size: 1em;
+}
+
+html {
+  font-size: 16px;
+}
+
+body {
+  font-family: "Open Sans", sans-serif;
   font-weight: false;
   line-height: 1.65;
 }
@@ -32,38 +48,47 @@ h2,
 h3,
 h4,
 h5 {
-  font-family: 'Gentium Book Plus', sans-serif;
+  font-family: "Open Sans", sans-serif;
   font-weight: true;
   line-height: 1.15;
 }
 
 h1,
 .text-size-h1 {
-  font-family: 'Gentium Book Plus', serif;
+  font-family: "Jersey 20", sans-serif;
   font-weight: 700;
   margin-top: 0;
   font-size: 4.21em;
 }
 
 h2,
-.text-size-h2 { font-size: 3.16em; }
+.text-size-h2 {
+  font-size: 3.16em;
+}
 
 h3,
-.text-size-h3 { font-size: 2.37em; }
+.text-size-h3 {
+  font-size: 2.37em;
+}
 
 h4,
-.text-size-h4 { font-size: 1.78em; }
+.text-size-h4 {
+  font-size: 1.78em;
+}
 
 h5,
-.text-size-h5 { font-size: 1.33em; }
+.text-size-h5 {
+  font-size: 1.33em;
+}
 
-.text-caption { font-size: 0.75em; }
+.text-caption {
+  font-size: 0.75em;
+}
 
 small,
 .text-small {
   font-size: 0.56em;
 }
-              
 
 body {
   color: var(--primary_col_3);
@@ -83,13 +108,13 @@ section {
   margin: 20px 0;
 }
 
-img{
+img {
   width: 100%;
   object-fit: cover;
 }
 
 .btn {
-  padding: 5px 10px;
+  padding: 10px 30px;
   background: var(--primary_col_1);
   border: 0;
   font-weight: 600;
@@ -116,17 +141,25 @@ nav {
 /* Hero Section */
 
 .hero {
-  padding: 80px 0;
+  height: 100vh;
   text-align: center;
   border-bottom: 2px dashed var(--secondary_col_1);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.hero h1 {
+  font-size: 7.59em;
 }
 
 .hero input {
   background: var(--primary_col_2);
   padding: 5px;
-  color: var(--secondary_col_1);
+  color: var(--primary_col_3);
   border: 0;
-  border-bottom: 2px dashed var(--secondary_col_1);
+  border: 2px dashed var(--primary_col_3);
 }
 
 .hero form {
@@ -138,20 +171,32 @@ nav {
 }
 
 /* Insigts Section */
+
+.feature {
+  background: var(--primary_col_3);
+  color: var(--primary_col_2);
+  padding: 25px;
+  border-radius: 10px;
+}
+
 .cards {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   margin-top: 10px;
 }
 
-.card{
+.card {
   text-align: center;
   padding: 20px;
   border-right: 2px dashed var(--secondary_col_1);
   border-bottom: 2px dashed var(--secondary_col_1);
 }
 
-.card:nth-child(3n){
+.card h3 {
+  margin-bottom: 10px;
+}
+
+.card:nth-child(3n) {
   border-right: none;
 }
 
@@ -159,22 +204,44 @@ nav {
   border-bottom: none;
 }
 
-.card img{
-  filter: invert(1);
+.card img {
+  /* filter: invert(1); */
   width: 100px;
 }
 
 /* APP Page */
-.invest{
+.invest {
   display: flex;
   align-items: center;
   gap: 15px;
 }
 
-.app input{
-  width: 300px;
-  padding: 10px 0;
-  margin-top: 10px;
+.app .btn {
+  display: block;
+  margin: 20px auto 0 auto;
 }
 
+.app input {
+  width: 300px;
+  padding: 10px 0;
+  margin-top: 12px;
+}
 
+.risks {
+  display: grid;
+  margin-top: 25px;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+
+.risk {
+  border-right: 2px dashed var(--secondary_col_1);
+}
+
+.risk:nth-child(3n) {
+  border-right: none;
+}
+
+.stocklist {
+  padding: 10px 0;
+}

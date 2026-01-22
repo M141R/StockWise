@@ -1,34 +1,35 @@
 {% extends 'base.html' %} {% block content %}
 
 <section class="app">
-<form action="{{url_for('app_page')}}" method="post">
-  <div class="invest">
-  <h1>Your Investment : </h1>
-  <input
-  type="number"
-  id="user_budget"
-  name="user_budget"
-  placeholder="Enter your budget"
-  required
-  />
-  </div>
-  <h1>Risk Apetite : </h1>
-  <button type="submit">Submit</button>
-</form>
+  <form action="{{url_for('app_page')}}" method="post">
+    <div class="invest">
+      <h1>Your Investment :</h1>
+      <input
+        type="number"
+        id="user_budget"
+        name="user_budget"
+        placeholder="Enter your budget"
+        required
+      />
+    </div>
+    <button type="submit" class="btn">Start Analysis</button>
+  </form>
 
-{% if recommendations %} {% for risk_level, stocks in recommendations.items() %}
-<h2>{{ risk_level }}</h2>
-<ul>
-  {% for stock in stocks %}
-  <li>
-    Company: {{ stock.Company_name }} | Symbol: {{ stock.symbol }} | Score: {{
-    stock.score }} | Volatility: {{ stock.volatility|round(4) }} | Trade Type:
-    {{ stock['trade type'] }}
-  </li>
-  {% endfor %}
-</ul>
-{% endfor %} {% else %}
-<p>Enter your budget above to get stock recommendations.</p>
-{% endif %} 
+  {% if recommendations %}
+  <div class="risks">
+    {% for risk_level, stocks in recommendations.items() %}
+    <div class="risk">
+      <h2>{{ risk_level }}</h2>
+      {% for stock in stocks %}
+      <div class="stocklist">
+        <h3>{{ stock.Company_name }}</h3>
+        <p>Score: {{stock.score }}</p>
+        <p>Trade Type: {{ stock['trade type'] }}</p>
+      </div>
+      {% endfor %}
+    </div>
+    {% endfor %}
+  </div>
+  {% endif %}
 </section>
 {% endblock content %}
