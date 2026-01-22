@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Jersey+20&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Gentium+Book+Plus:ital,wght@0,400;0,700;1,400;1,700&display=swap');
 
 * {
   padding: 0;
@@ -14,21 +14,6 @@
 }
 
 /* Type_Scale */
-
-html {
-  font-size: 16px;
-}
-
-body {
-  font-family: "Open Sans", sans-serif;
-  font-weight: false;
-  line-height: 1.65;
-}
-
-p {
-  font-size: 1em;
-}
-
 
 html {font-size: 16px;}
 
@@ -47,14 +32,14 @@ h2,
 h3,
 h4,
 h5 {
-  font-family: 'Open Sans', sans-serif;
+  font-family: 'Gentium Book Plus', sans-serif;
   font-weight: true;
   line-height: 1.15;
 }
 
 h1,
 .text-size-h1 {
-  font-family: "Jersey 20", sans-serif;
+  font-family: 'Gentium Book Plus', serif;
   font-weight: 700;
   margin-top: 0;
   font-size: 4.21em;
