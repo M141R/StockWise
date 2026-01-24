@@ -12,12 +12,17 @@
   <body>
     <nav>
       <div style="display: flex; align-items: center">
-        <a href="{{ url_for('hello_world') }}">StockWise</a>
-        <div class="hamburger" id="hamburgerMenu">
-          <span></span>
-          <span></span>
-          <span></span>
-        </div>
+        <a href="{{ url_for('hello_world') }}" class="nav-logo">
+          <img
+            src="{{ url_for('static', filename='LOGO.png.jpeg') }}"
+            alt="StockWise Logo"
+          />
+        </a>
+      </div>
+      <div class="hamburger" id="hamburgerMenu">
+        <span></span>
+        <span></span>
+        <span></span>
       </div>
       <div class="links" id="navLinks">
         <a href="{{ url_for('hello_world') }}">Home</a>
