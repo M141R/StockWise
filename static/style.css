@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Gentium+Book+Plus:ital,wght@0,400;0,700;1,400;1,700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Gentium+Book+Plus:ital,wght@0,400;0,700;1,400;1,700&display=swap");
 
 * {
   padding: 0;
@@ -14,6 +14,21 @@
 }
 
 /* Type_Scale */
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+main {
+  flex: 1;
+}
 
 html {
   font-size: 16px;
@@ -202,7 +217,7 @@ nav {
   gap: 15px;
 }
 
-.app .btn {
+.app .main_btn {
   display: block;
   margin: 20px auto 0 auto;
 }
@@ -230,4 +245,69 @@ nav {
 
 .stocklist {
   padding: 10px 0;
+}
+
+/* Footer */
+
+footer {
+  background: var(--primary_col_1);
+  padding: 30px 20px;
+}
+
+/* .footer_logo {
+  font-family: "Bebas Neue", sans-serif;
+  font-size: 220px;
+  line-height: 0.7;
+  margin-top: 10px;
+  text-align: center;
+  opacity: 10%;
+} */
+
+.signup {
+  max-width: 800px;
+  text-align: center;
+  margin: 0 auto;
+}
+
+.signup form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  max-width: 300px;
+  margin: 0 auto;
+  padding: 50px 0;
+}
+
+.signup input {
+  padding: 10px;
+  border-radius: 5px;
+  width: 300px;
+}
+
+.signup p {
+  text-align: left;
+}
+
+.input-wrapper {
+  position: relative;
+  width: 100%;
+}
+.input-bar {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 4px;
+  background: var(--secondary_col_1);
+  transition: background 0.2s;
+}
+.input-bar.valid {
+  background: #2ecc40;
+}
+.input-bar.invalid {
+  background: #ff4136;
+}
+
+.app .btn {
+  display: block;
 }

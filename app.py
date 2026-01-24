@@ -1,5 +1,7 @@
 from flask import Flask, render_template, jsonify, url_for, request, redirect, session
+from flask import jsonify, request
 import yfinance as yf
+import datetime
 from yfinance import EquityQuery
 import pandas as pd
 from stock_analyzer import stock_analyzer
@@ -66,6 +68,98 @@ def login():
 def logout():
     session.pop("user", None)
     return redirect(url_for("login"))
+
+
+@app.route("/stock/<symbol>")
+def stock_detail(symbol):
+    # Fetch 6 months historical data
+    ticker = yf.Ticker(symbol)
+    hist = ticker.history(period="6mo")
+    # Prepare data for chart.js
+    chart_data = {
+        "dates": hist.index.strftime("%Y-%m-%d").tolist(),
+        "close": hist["Close"].fillna(method="ffill").tolist(),
+    }
+    # Fetch latest news (yfinance)
+    news = []
+    try:
+        news = ticker.news[:5]  # Get top 5 news articles
+    except Exception:
+        pass
+    # You can add more: e.g. key stats, company info, analyst recommendations
+    info = ticker.info
+    return render_template(
+        "stock_detail.html",
+        symbol=symbol,
+        chart_data=chart_data,
+        news=news,
+        info=info,
+    )
+
+
+def get_user_id():
+    return session.get("user")
+
+
+@app.route("/save_stock", methods=["POST"])
+def save_stock():
+    user_id = get_user_id()
+    if not user_id:
+        return jsonify({"error": "Not logged in"}), 401
+    symbol = request.json.get("symbol")
+    if not symbol:
+        return jsonify({"error": "No symbol provided"}), 400
+    # Save to Supabase (table: saved_stocks)
+    data = {"user_id": user_id, "symbol": symbol}
+    supabase.table("saved_stocks").insert(data).execute()
+    return jsonify({"success": True})
+
+
+@app.route("/save_list", methods=["POST"])
+def save_list():
+    user_id = get_user_id()
+    if not user_id:
+        return jsonify({"error": "Not logged in"}), 401
+    symbols = request.json.get("symbols")
+    if not symbols or not isinstance(symbols, list):
+        return jsonify({"error": "No symbols provided"}), 400
+    data = [{"user_id": user_id, "symbol": s} for s in symbols]
+    supabase.table("saved_stocks").insert(data).execute()
+    return jsonify({"success": True})
+
+
+@app.route("/account", methods=["GET", "POST"])
+def account():
+    user_id = session.get("user")
+    if not user_id:
+        return redirect(url_for("login"))
+    # Get user info from Supabase
+    user = supabase.auth.get_user()
+    email = user.user.email if user and user.user else "Unknown"
+    is_confirmed = user.user.confirmed_at is not None if user and user.user else False
+    resend_success = None
+    if request.method == "POST" and request.form.get("resend_confirm"):
+        try:
+            # Use Supabase API to resend confirmation email
+            supabase.auth.api.resend(email)
+            resend_success = True
+        except Exception as e:
+            print("Resend error:", e)
+            resend_success = False
+    # Get saved stocks
+    saved = (
+        supabase.table("saved_stocks").select("symbol").eq("user_id", user_id).execute()
+    )
+    saved_symbols = (
+        [row["symbol"] for row in saved.data] if saved and saved.data else []
+    )
+    return render_template(
+        "account.html",
+        email=email,
+        is_confirmed=is_confirmed,
+        resend_success=resend_success,
+        saved_symbols=saved_symbols,
+    )
 
 
 if __name__ == "__main__":

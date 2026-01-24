@@ -1,0 +1,62 @@
+{% extends 'base.html' %} {% block content %}
+<section class="stock-detail">
+  <h1>{{ info['shortName'] if info and 'shortName' in info else symbol }}</h1>
+  <h3>{{ symbol }}</h3>
+  <div style="max-width: 700px; margin: 0 auto">
+    <canvas id="stockChart"></canvas>
+  </div>
+  {% set valid_news = news | selectattr('title', 'defined') |
+  selectattr('title') | list %} {% if valid_news and valid_news|length > 0 %}
+  <h2>Latest News</h2>
+  <ul>
+    {% for article in valid_news %}
+    <li>
+      <a href="{{ article.link }}" target="_blank">{{ article.title }}</a>
+      <span style="font-size: 0.8em; color: var(--secondary_col_1)"
+        >{{ article.publisher }}</span
+      >
+    </li>
+    {% endfor %}
+  </ul>
+  {% endif %}
+  <h2>Key Stats</h2>
+  <ul>
+    <li>Market Cap: {{ info['marketCap'] | default('N/A') }}</li>
+    <li>Sector: {{ info['sector'] | default('N/A') }}</li>
+    <li>Industry: {{ info['industry'] | default('N/A') }}</li>
+    <li>52w High: {{ info['fiftyTwoWeekHigh'] | default('N/A') }}</li>
+    <li>52w Low: {{ info['fiftyTwoWeekLow'] | default('N/A') }}</li>
+    <li>PE Ratio: {{ info['trailingPE'] | default('N/A') }}</li>
+  </ul>
+</section>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+  const ctx = document.getElementById('stockChart').getContext('2d');
+  const chartData = {{ chart_data | tojson | safe }};
+  new Chart(ctx, {
+    type: 'line',
+    data: {
+      labels: chartData.dates,
+      datasets: [{
+        label: 'Close Price',
+        data: chartData.close,
+        borderColor: '#2ecc40',
+        backgroundColor: 'rgba(46,204,64,0.1)',
+        fill: true,
+        tension: 0.1
+      }]
+    },
+    options: {
+      responsive: true,
+      plugins: {
+        legend: { display: false },
+        title: { display: true, text: '6 Month Price Chart' }
+      },
+      scales: {
+        x: { display: true, title: { display: true, text: 'Date' } },
+        y: { display: true, title: { display: true, text: 'Price' } }
+      }
+    }
+  });
+</script>
+{% endblock %}
