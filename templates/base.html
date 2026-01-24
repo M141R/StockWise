@@ -8,47 +8,18 @@
       rel="stylesheet"
       href="{{url_for('static', filename = 'style.css')}}"
     />
-    <style>
-      .modal-bg {
-        display: none;
-        position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background: rgba(0, 0, 0, 0.6);
-        z-index: 9999;
-        justify-content: center;
-        align-items: center;
-      }
-      .modal {
-        background: var(--primary_col_3);
-        color: var(--primary_col_2);
-        padding: 30px 40px;
-        border-radius: 10px;
-        box-shadow: 0 2px 20px rgba(0, 0, 0, 0.2);
-        text-align: center;
-        min-width: 300px;
-      }
-      .modal button {
-        margin-top: 20px;
-        padding: 8px 20px;
-        background: var(--primary_col_1);
-        color: var(--primary_col_3);
-        border: none;
-        border-radius: 5px;
-        font-weight: 600;
-        cursor: pointer;
-      }
-    </style>
   </head>
-
   <body>
     <nav>
-      <div>
+      <div style="display: flex; align-items: center">
         <a href="{{ url_for('hello_world') }}">StockWise</a>
+        <div class="hamburger" id="hamburgerMenu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
       </div>
-      <div class="links">
+      <div class="links" id="navLinks">
         <a href="{{ url_for('hello_world') }}">Home</a>
         <a href="{{ url_for('app_page') }}">App</a>
         {% if session.get('user') %}
@@ -69,27 +40,31 @@
       </div>
       <!-- <p class="footer_logo">StockWise</p> -->
     </footer>
-    <div class="modal-bg" id="confirmModal">
-      <div class="modal" id="confirmModalContent">
-        <span id="confirmModalMsg"></span>
-        <button
-          onclick="
-            document.getElementById('confirmModal').style.display = 'none'
-          "
-        >
-          Close
-        </button>
-      </div>
-    </div>
     <script>
       document.addEventListener("DOMContentLoaded", function () {
+        const hamburger = document.getElementById("hamburgerMenu");
+        const navLinks = document.getElementById("navLinks");
+        hamburger &&
+          hamburger.addEventListener("click", function () {
+            navLinks.classList.toggle("show");
+            hamburger.classList.toggle("active");
+          });
+        // Hide menu on link click (mobile)
+        navLinks &&
+          navLinks.querySelectorAll("a").forEach((link) => {
+            link.addEventListener("click", function () {
+              if (window.innerWidth <= 800) {
+                navLinks.classList.remove("show");
+                hamburger.classList.remove("active");
+              }
+            });
+          });
         const params = new URLSearchParams(
           window.location.hash.replace("#", "?"),
         );
         const modalBg = document.getElementById("confirmModal");
         const modalMsg = document.getElementById("confirmModalMsg");
         if (params.get("type") === "signup" && params.get("token")) {
-          // Success (Supabase will redirect with type=signup and token)
           modalMsg.textContent =
             "Your email has been confirmed! You can now log in.";
           modalBg.style.display = "flex";

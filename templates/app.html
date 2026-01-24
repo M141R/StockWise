@@ -25,12 +25,11 @@
       <h2>{{ risk_level }}</h2>
       {% for stock in stocks %}
       <div class="stocklist">
-        <h3>{{ stock.Company_name }}</h3>
+        <a href="{{ url_for('stock_detail', symbol=stock.symbol) }}">
+          <h3>{{ stock.Company_name }}</h3></a
+        >
         <p>Score: {{stock.score }}</p>
         <p>Trade Type: {{ stock['trade type'] }}</p>
-        <a href="{{ url_for('stock_detail', symbol=stock.symbol) }}"
-          >{{ stock.symbol }}</a
-        >
         <button class="btn save-stock-btn" data-symbol="{{ stock.symbol }}">
           Save
         </button>
