@@ -51,17 +51,24 @@ def signup():
 
 @app.route("/login", methods=["GET", "POST"])
 def login():
+    error_message = None
     if request.method == "POST":
         email = request.form["email"]
         password = request.form["password"]
-        res = supabase.auth.sign_in_with_password(
-            {"email": email, "password": password}
-        )
-        if getattr(res, "user", None):
-            session["user"] = res.user.id
-            return redirect(url_for("app_page"))
-        return "Login failed", 401
-    return render_template("login.html", title="Login")
+        try:
+            res = supabase.auth.sign_in_with_password(
+                {"email": email, "password": password}
+            )
+            if getattr(res, "user", None):
+                session["user"] = res.user.id
+                return redirect(url_for("app_page"))
+            error_message = "Login failed. Please check your credentials."
+        except Exception as e:
+            if "Email not confirmed" in str(e):
+                error_message = "Your email is not confirmed. Please check your inbox for the confirmation link."
+            else:
+                error_message = "Login failed: " + str(e)
+    return render_template("login.html", title="Login", error_message=error_message)
 
 
 @app.route("/logout")
