@@ -70,7 +70,7 @@ The platform is especially targeted at beginner and amateur investors who lack d
 
  Clone the repository to your local system:
 
-git clone https://github.com/your-username/stockwise
+git clone https://github.com/M141R/IEEE-Megaproject
 
 2.Navigate to the Project Directory
 cd stockwise
