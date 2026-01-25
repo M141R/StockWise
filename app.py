@@ -22,7 +22,7 @@ app.secret_key = "your_secret_key"
 
 @app.route("/")
 def hello_world():
-    return render_template("home.html")
+    return render_template("home.html", title="Home")
 
 
 @app.route("/app", methods=["GET", "POST"])
@@ -34,7 +34,7 @@ def app_page():
         user_budget = request.form.get("user_budget")
         print(user_budget)
         result = stock_analyzer(user_budget)
-    return render_template("app.html", recommendations=result)
+    return render_template("app.html", recommendations=result, title="App")
 
 
 @app.route("/signup", methods=["GET", "POST"])
@@ -44,9 +44,9 @@ def signup():
         password = request.form["password"]
         res = supabase.auth.sign_up({"email": email, "password": password})
         if getattr(res, "user", None):
-            return redirect(url_for("login"))
+            return redirect(url_for("account"))
         return "Signup failed", 400
-    return render_template("signup.html")
+    return render_template("signup.html", title="Register")
 
 
 @app.route("/login", methods=["GET", "POST"])
@@ -61,7 +61,7 @@ def login():
             session["user"] = res.user.id
             return redirect(url_for("app_page"))
         return "Login failed", 401
-    return render_template("login.html")
+    return render_template("login.html", title="Login")
 
 
 @app.route("/logout")

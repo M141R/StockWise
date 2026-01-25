@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>{{title}}</title>
+    <title>StockWise | {{title}}</title>
     <link
       rel="stylesheet"
       href="{{url_for('static', filename = 'style.css')}}"
@@ -11,21 +11,10 @@
   </head>
   <body>
     <nav>
-<<<<<<< HEAD
-      <div>
-       
-      </div>
-      
-  <div class="logo">
-    <img src="{{ url_for('static', filename='LOGO.png.jpeg') }}" alt="StockWise Logo">
-  </div>
-
-      <div class="links">
-=======
       <div style="display: flex; align-items: center">
-        <a href="{{ url_for('hello_world') }}" class="nav-logo">
+        <a href="{{ url_for('hello_world') }}" class="logo">
           <img
-            src="{{ url_for('static', filename='LOGO.png.jpeg') }}"
+            src="{{ url_for('static', filename='LOGO.jpeg') }}"
             alt="StockWise Logo"
           />
         </a>
@@ -36,7 +25,6 @@
         <span></span>
       </div>
       <div class="links" id="navLinks">
->>>>>>> 3c22ddfd7305f48828f266ec598ca93849d9883f
         <a href="{{ url_for('hello_world') }}">Home</a>
         <a href="{{ url_for('app_page') }}">App</a>
         {% if session.get('user') %}
@@ -48,37 +36,23 @@
       </div>
     </nav>
     <main>{%block content%} {% endblock %}</main>
-<<<<<<< HEAD
-<footer class="footer">
-  <div class="footer-container">
-    <div class="footer-brand">
-      <img src="{{ url_for('static', filename='LOGO.png.jpeg') }}" alt="StockWise Logo">
-      <p>Smart insights. Smarter investing.</p>
-    </div>
-
-    <div class="footer-links">
-      <a href="#">Home</a>
-      <a href="#">App</a>
-      <a href="#">Contact</a>
-    </div>
-  </div>
-
-  <div class="footer-bottom">
-    © 2026 StockWise. All rights reserved.
-  </div>
-</footer>
-
-
-
-=======
     <footer>
-      <div class="pages">
-        <p>Pages</p>
-        <a href="{{ url_for('hello_world') }}">Home</a>
-        <a href="{{ url_for('app_page') }}">App</a>
-        <a href="{{ url_for('app_page') }}">About</a>
+      <div class="footer_things">
+        <a href="{{ url_for('hello_world') }}" class="logo">
+          <img
+            src="{{ url_for('static', filename='LOGO.jpeg') }}"
+            alt="StockWise Logo"
+          />
+        </a>
+        <div class="pages">
+          <p>Pages</p>
+          <a href="{{ url_for('hello_world') }}">Home</a>
+          <a href="{{ url_for('app_page') }}">App</a>
+          <a href="{{ url_for('account') }}">Account</a>
+        </div>
       </div>
       <!-- <p class="footer_logo">StockWise</p> -->
+      <p class="copyright">© 2026 StockWise. All rights reserved.</p>
     </footer>
     <script>
       document.addEventListener("DOMContentLoaded", function () {
@@ -121,4 +95,3 @@
     </script>
   </body>
 </html>
->>>>>>> 3c22ddfd7305f48828f266ec598ca93849d9883f

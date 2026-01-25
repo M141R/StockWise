@@ -138,6 +138,10 @@ nav {
   padding: 10px 30px;
 }
 
+.logo {
+  width: 100px;
+}
+
 .links {
   display: flex;
   flex-direction: row;
@@ -326,6 +330,15 @@ nav {
 footer {
   background: var(--primary_col_1);
   padding: 30px 20px;
+}
+
+.footer_things {
+  display: flex;
+  justify-content: space-between;
+}
+
+.copyright {
+  text-align: center;
 }
 
 /* .footer_logo {
