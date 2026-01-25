@@ -98,9 +98,20 @@ section {
   margin: 20px 0;
 }
 
-img{
+.hero img {
   width: 100%;
   object-fit: cover;
+}
+
+.card img {
+  width: 100px;
+  filter: invert(1);
+}
+
+.footer-brand img {
+  width: 100px;
+  height: auto;
+  object-fit: contain;
 }
 
 .btn {
@@ -120,6 +131,16 @@ nav {
   align-items: center;
   padding: 10px 30px;
 }
+
+/* Logo control */
+.logo img {
+  height: 45px;   /* keep logo small */
+  width: auto;
+  object-fit: contain;
+}
+
+
+
 
 .links {
   display: flex;
@@ -191,3 +212,56 @@ nav {
   padding: 10px 0;
   margin-top: 10px;
 }
+
+
+.footer {
+  margin-top: 20px;
+  padding: 10px 30px;
+  border-top: 2px dashed var(--secondary_col_1);
+}
+
+.footer-container {
+  display: flex;                 
+  justify-content: space-between;
+  align-items: center;
+}
+
+.footer-brand h4 {
+  margin-bottom: 6px;
+}
+
+.footer-brand p {
+  color: var(--secondary_col_1);
+}
+
+.footer-links {
+  display: flex;               
+  gap: 25px;
+  font-weight: 600;
+}
+
+.footer-links a:hover {
+  color: var(--primary_col_1);
+}
+
+.footer-bottom {
+  margin-top: 10px;
+  text-align: center;
+  color: var(--secondary_col_1);
+}
+/* Fix footer size */
+
+.footer-brand img {
+  max-width: 120px;
+  width: auto;
+  height: auto;
+  display: block;
+}
+.footer-brand {
+  max-width: 200px;
+}
+
+
+
+
+
