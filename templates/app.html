@@ -1,34 +1,92 @@
 {% extends 'base.html' %} {% block content %}
 
 <section class="app">
-<form action="{{url_for('app_page')}}" method="post">
-  <div class="invest">
-  <h1>Your Investment : </h1>
-  <input
-  type="number"
-  id="user_budget"
-  name="user_budget"
-  placeholder="Enter your budget"
-  required
-  />
-  </div>
-  <h1>Risk Apetite : </h1>
-  <button type="submit">Submit</button>
-</form>
+  <form action="{{url_for('app_page')}}" method="post">
+    <div class="invest">
+      <h1>Your Investment :</h1>
+      <input
+        type="number"
+        id="user_budget"
+        name="user_budget"
+        placeholder="Enter your budget"
+        required
+      />
+    </div>
+    <button type="submit" class="main_btn btn">Start Analysis</button>
+  </form>
 
-{% if recommendations %} {% for risk_level, stocks in recommendations.items() %}
-<h2>{{ risk_level }}</h2>
-<ul>
-  {% for stock in stocks %}
-  <li>
-    Company: {{ stock.Company_name }} | Symbol: {{ stock.symbol }} | Score: {{
-    stock.score }} | Volatility: {{ stock.volatility|round(4) }} | Trade Type:
-    {{ stock['trade type'] }}
-  </li>
-  {% endfor %}
-</ul>
-{% endfor %} {% else %}
-<p>Enter your budget above to get stock recommendations.</p>
-{% endif %} 
+  {% if recommendations %}
+  <button class="btn main_btn" id="save-list-btn" style="margin-bottom: 20px">
+    Save Whole List
+  </button>
+  <div class="risks">
+    {% for risk_level, stocks in recommendations.items() %}
+    <div class="risk">
+      <h2>{{ risk_level }}</h2>
+      {% for stock in stocks %}
+      <div class="stocklist">
+        <a href="{{ url_for('stock_detail', symbol=stock.symbol) }}">
+          <h3>{{ stock.Company_name }}</h3></a
+        >
+        <p>Score: {{stock.score }}</p>
+        <p>Trade Type: {{ stock['trade type'] }}</p>
+        <button class="btn save-stock-btn" data-symbol="{{ stock.symbol }}">
+          Save
+        </button>
+      </div>
+      {% endfor %}
+    </div>
+    {% endfor %}
+  </div>
+  {% endif %}
 </section>
+<script>
+  // Save single stock
+  function saveStock(symbol) {
+    fetch("/save_stock", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ symbol }),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.success) alert("Stock saved!");
+        else alert("Error: " + (data.error || "Could not save stock."));
+      });
+  }
+  // Save whole list
+  function saveList(symbols) {
+    fetch("/save_list", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ symbols }),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.success) alert("List saved!");
+        else alert("Error: " + (data.error || "Could not save list."));
+      });
+  }
+  document.addEventListener("DOMContentLoaded", function () {
+    // Single stock save buttons
+    document.querySelectorAll(".save-stock-btn").forEach((btn) => {
+      btn.addEventListener("click", function (e) {
+        e.preventDefault();
+        saveStock(this.dataset.symbol);
+      });
+    });
+    // Save whole list button
+    const saveListBtn = document.getElementById("save-list-btn");
+    if (saveListBtn) {
+      saveListBtn.addEventListener("click", function (e) {
+        e.preventDefault();
+        // Gather all symbols from the page
+        const symbols = Array.from(
+          document.querySelectorAll(".save-stock-btn"),
+        ).map((btn) => btn.dataset.symbol);
+        saveList(symbols);
+      });
+    }
+  });
+</script>
 {% endblock content %}

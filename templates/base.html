@@ -9,9 +9,9 @@
       href="{{url_for('static', filename = 'style.css')}}"
     />
   </head>
-
   <body>
     <nav>
+<<<<<<< HEAD
       <div>
        
       </div>
@@ -21,12 +21,34 @@
   </div>
 
       <div class="links">
+=======
+      <div style="display: flex; align-items: center">
+        <a href="{{ url_for('hello_world') }}" class="nav-logo">
+          <img
+            src="{{ url_for('static', filename='LOGO.png.jpeg') }}"
+            alt="StockWise Logo"
+          />
+        </a>
+      </div>
+      <div class="hamburger" id="hamburgerMenu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+      <div class="links" id="navLinks">
+>>>>>>> 3c22ddfd7305f48828f266ec598ca93849d9883f
         <a href="{{ url_for('hello_world') }}">Home</a>
         <a href="{{ url_for('app_page') }}">App</a>
-        <a href="#">Sign up</a>
+        {% if session.get('user') %}
+        <a href="{{ url_for('account') }}">Account</a>
+        <a href="{{ url_for('logout') }}">Logout</a>
+        {% else %}
+        <a href="{{ url_for('signup') }}">Sign up</a>
+        {% endif %}
       </div>
     </nav>
     <main>{%block content%} {% endblock %}</main>
+<<<<<<< HEAD
 <footer class="footer">
   <div class="footer-container">
     <div class="footer-brand">
@@ -48,3 +70,55 @@
 
 
 
+=======
+    <footer>
+      <div class="pages">
+        <p>Pages</p>
+        <a href="{{ url_for('hello_world') }}">Home</a>
+        <a href="{{ url_for('app_page') }}">App</a>
+        <a href="{{ url_for('app_page') }}">About</a>
+      </div>
+      <!-- <p class="footer_logo">StockWise</p> -->
+    </footer>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const hamburger = document.getElementById("hamburgerMenu");
+        const navLinks = document.getElementById("navLinks");
+        hamburger &&
+          hamburger.addEventListener("click", function () {
+            navLinks.classList.toggle("show");
+            hamburger.classList.toggle("active");
+          });
+        // Hide menu on link click (mobile)
+        navLinks &&
+          navLinks.querySelectorAll("a").forEach((link) => {
+            link.addEventListener("click", function () {
+              if (window.innerWidth <= 800) {
+                navLinks.classList.remove("show");
+                hamburger.classList.remove("active");
+              }
+            });
+          });
+        const params = new URLSearchParams(
+          window.location.hash.replace("#", "?"),
+        );
+        const modalBg = document.getElementById("confirmModal");
+        const modalMsg = document.getElementById("confirmModalMsg");
+        if (params.get("type") === "signup" && params.get("token")) {
+          modalMsg.textContent =
+            "Your email has been confirmed! You can now log in.";
+          modalBg.style.display = "flex";
+        } else if (params.get("error_code") === "otp_expired") {
+          modalMsg.textContent =
+            "Your email confirmation link is invalid or has expired. Please request a new one.";
+          modalBg.style.display = "flex";
+        } else if (params.get("error_code")) {
+          modalMsg.textContent =
+            "Error: " + (params.get("error_description") || "Unknown error.");
+          modalBg.style.display = "flex";
+        }
+      });
+    </script>
+  </body>
+</html>
+>>>>>>> 3c22ddfd7305f48828f266ec598ca93849d9883f

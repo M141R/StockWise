@@ -1,0 +1,36 @@
+{% extends 'base.html' %} {% block content %}
+<section class="account">
+  <h1>Account Settings</h1>
+  <div class="account-info">
+    <p><strong>Email:</strong> {{ email }}</p>
+    <p><strong>Password:</strong> ********</p>
+    <p>
+      <strong>Email Confirmed:</strong> {{ 'Yes' if is_confirmed else 'No' }}
+    </p>
+    {% if not is_confirmed %}
+    <form method="post" style="margin-top: 10px">
+      <button class="btn" name="resend_confirm" type="submit">
+        Resend Confirmation Email
+      </button>
+    </form>
+    {% if resend_success is not none %}
+    <p style="color:{{ 'green' if resend_success else 'red' }};">
+      {% if resend_success %}Confirmation email sent!{% else %}Error sending
+      email.{% endif %}
+    </p>
+    {% endif %} {% endif %}
+  </div>
+  <h2>Saved Stocks</h2>
+  {% if saved_symbols %}
+  <ul>
+    {% for symbol in saved_symbols %}
+    <li>
+      <a href="{{ url_for('stock_detail', symbol=symbol) }}">{{ symbol }}</a>
+    </li>
+    {% endfor %}
+  </ul>
+  {% else %}
+  <p>No saved stocks yet.</p>
+  {% endif %}
+</section>
+{% endblock %}

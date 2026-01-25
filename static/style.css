@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Gentium+Book+Plus:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Gentium+Book+Plus:ital,wght@0,400;0,700;1,400;1,700&display=swap");
 
 * {
   padding: 0;
@@ -7,18 +7,35 @@
 }
 
 :root {
-  --primary_col_1: #55aacc;
-  --primary_col_2: #101010;
-  --primary_col_3: #f4f4f4;
+  --primary_col_1: #074a4c;
+  --primary_col_2: #031e1f;
+  --primary_col_3: #f2f1eb;
   --secondary_col_1: #656565;
 }
 
 /* Type_Scale */
 
-html {font-size: 16px;}
+html,
+body {
+  height: 100%;
+}
 
 body {
-  font-family: 'Open Sans', sans-serif;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+main {
+  flex: 1;
+}
+
+html {
+  font-size: 16px;
+}
+
+body {
+  font-family: "Open Sans", sans-serif;
   font-weight: false;
   line-height: 1.65;
 }
@@ -32,38 +49,47 @@ h2,
 h3,
 h4,
 h5 {
-  font-family: 'Gentium Book Plus', sans-serif;
+  font-family: "Gentium Book Plus", serif;
   font-weight: true;
   line-height: 1.15;
 }
 
 h1,
 .text-size-h1 {
-  font-family: 'Gentium Book Plus', serif;
+  font-family: "Gentium Book Plus", serif;
   font-weight: 700;
   margin-top: 0;
   font-size: 4.21em;
 }
 
 h2,
-.text-size-h2 { font-size: 3.16em; }
+.text-size-h2 {
+  font-size: 3.16em;
+}
 
 h3,
-.text-size-h3 { font-size: 2.37em; }
+.text-size-h3 {
+  font-size: 2.37em;
+}
 
 h4,
-.text-size-h4 { font-size: 1.78em; }
+.text-size-h4 {
+  font-size: 1.78em;
+}
 
 h5,
-.text-size-h5 { font-size: 1.33em; }
+.text-size-h5 {
+  font-size: 1.33em;
+}
 
-.text-caption { font-size: 0.75em; }
+.text-caption {
+  font-size: 0.75em;
+}
 
 small,
 .text-small {
   font-size: 0.56em;
 }
-              
 
 body {
   color: var(--primary_col_3);
@@ -71,7 +97,7 @@ body {
 }
 
 a {
-  text-decoration: none;
+  text-decoration: underline;
   color: var(--primary_col_3);
 }
 
@@ -83,17 +109,23 @@ section {
   margin: 20px 0;
 }
 
-img{
+img {
   width: 100%;
   object-fit: cover;
 }
 
 .btn {
-  padding: 5px 10px;
+  padding: 10px 30px;
   background: var(--primary_col_1);
   border: 0;
   font-weight: 600;
   color: var(--primary_col_3);
+}
+
+.btn:hover {
+  background: var(--primary_col_2);
+  color: var(--primary_col_3);
+  border: 2px solid var(--primary_col_3);
 }
 
 /* Navbar */
@@ -113,20 +145,96 @@ nav {
   font-weight: 600;
 }
 
+/* Hamburger Menu Styles */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  cursor: pointer;
+  width: 36px;
+  height: 36px;
+  margin-left: 10px;
+  z-index: 1100;
+}
+.hamburger span {
+  height: 4px;
+  width: 100%;
+  background: var(--primary_col_3);
+  margin: 5px 0;
+  border-radius: 2px;
+  transition: 0.3s;
+  display: block;
+}
+.hamburger.active span:nth-child(1) {
+  transform: translateY(9px) rotate(45deg);
+}
+.hamburger.active span:nth-child(2) {
+  opacity: 0;
+}
+.hamburger.active span:nth-child(3) {
+  transform: translateY(-9px) rotate(-45deg);
+}
+
+@media (max-width: 800px) {
+  .hamburger {
+    display: flex;
+  }
+  nav {
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    position: relative;
+    padding: 10px 0;
+  }
+  nav .links {
+    display: none;
+    flex-direction: column;
+    background: var(--primary_col_1);
+    position: absolute;
+    top: 60px;
+    right: 10px;
+    min-width: 140px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+    z-index: 1000;
+    padding: 10px 0;
+  }
+  nav .links.show {
+    display: flex;
+  }
+  nav .links a {
+    padding: 10px 20px;
+    text-align: left;
+    font-size: 1.1em;
+    border-bottom: 1px solid var(--secondary_col_1);
+  }
+  nav .links a:last-child {
+    border-bottom: none;
+  }
+}
+
 /* Hero Section */
 
 .hero {
-  padding: 80px 0;
+  height: 100vh;
   text-align: center;
   border-bottom: 2px dashed var(--secondary_col_1);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.hero h1 {
+  font-size: 7.59em;
 }
 
 .hero input {
   background: var(--primary_col_2);
   padding: 5px;
-  color: var(--secondary_col_1);
+  color: var(--primary_col_3);
   border: 0;
-  border-bottom: 2px dashed var(--secondary_col_1);
+  border: 2px dashed var(--primary_col_3);
 }
 
 .hero form {
@@ -138,20 +246,32 @@ nav {
 }
 
 /* Insigts Section */
+
+.feature {
+  background: var(--primary_col_3);
+  color: var(--primary_col_2);
+  padding: 25px;
+  border-radius: 10px;
+}
+
 .cards {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   margin-top: 10px;
 }
 
-.card{
+.card {
   text-align: center;
   padding: 20px;
   border-right: 2px dashed var(--secondary_col_1);
   border-bottom: 2px dashed var(--secondary_col_1);
 }
 
-.card:nth-child(3n){
+.card h3 {
+  margin-bottom: 10px;
+}
+
+.card:nth-child(3n) {
   border-right: none;
 }
 
@@ -159,22 +279,255 @@ nav {
   border-bottom: none;
 }
 
-.card img{
-  filter: invert(1);
+.card img {
+  /* filter: invert(1); */
   width: 100px;
 }
 
 /* APP Page */
-.invest{
+.invest {
   display: flex;
   align-items: center;
   gap: 15px;
 }
 
-.app input{
-  width: 300px;
-  padding: 10px 0;
-  margin-top: 10px;
+.app .main_btn {
+  display: block;
+  margin: 20px auto 0 auto;
 }
 
+.app input {
+  width: 300px;
+  padding: 10px 0;
+  margin-top: 12px;
+}
 
+.risks {
+  display: grid;
+  margin-top: 25px;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+
+.risk {
+  border-right: 2px dashed var(--secondary_col_1);
+}
+
+.risk:nth-child(3n) {
+  border-right: none;
+}
+
+.stocklist {
+  padding: 10px 0;
+}
+
+/* Footer */
+
+footer {
+  background: var(--primary_col_1);
+  padding: 30px 20px;
+}
+
+/* .footer_logo {
+  font-family: "Bebas Neue", sans-serif;
+  font-size: 220px;
+  line-height: 0.7;
+  margin-top: 10px;
+  text-align: center;
+  opacity: 10%;
+} */
+
+.signup {
+  max-width: 800px;
+  text-align: center;
+  margin: 0 auto;
+}
+
+.signup form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  max-width: 300px;
+  margin: 0 auto;
+  padding: 50px 0;
+}
+
+.signup input {
+  padding: 10px;
+  border-radius: 5px;
+  width: 300px;
+}
+
+.signup p {
+  text-align: center;
+}
+
+.input-wrapper {
+  position: relative;
+  width: 100%;
+}
+.input-bar {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 4px;
+  background: var(--secondary_col_1);
+  transition: background 0.2s;
+}
+.input-bar.valid {
+  background: #2ecc40;
+}
+.input-bar.invalid {
+  background: #ff4136;
+}
+
+.app .btn {
+  display: block;
+}
+
+/* Responsive Styles */
+@media (max-width: 1100px) {
+  .cards {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .risks {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 800px) {
+  html {
+    font-size: 14px;
+  }
+
+  body {
+    font-family: "Open Sans", sans-serif;
+    font-weight: false;
+    line-height: 1.65;
+  }
+
+  p {
+    font-size: 1em;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5 {
+    font-family: "Gentium Book Plus", serif;
+    font-weight: true;
+    line-height: 1.15;
+  }
+
+  h1,
+  .text-size-h1 {
+    font-family: "Gentium Book Plus", serif;
+    font-weight: 700;
+    margin-top: 0;
+    font-size: 3.05em;
+  }
+
+  h2,
+  .text-size-h2 {
+    font-size: 2.44em;
+  }
+
+  h3,
+  .text-size-h3 {
+    font-size: 1.95em;
+  }
+
+  h4,
+  .text-size-h4 {
+    font-size: 1.56em;
+  }
+
+  h5,
+  .text-size-h5 {
+    font-size: 1.25em;
+  }
+
+  .text-caption {
+    font-size: 0.8em;
+  }
+
+  small,
+  .text-small {
+    font-size: 0.64em;
+  }
+
+  nav {
+    flex-direction: row;
+    gap: 10px;
+    padding: 10px 10px;
+  }
+  .cards {
+    grid-template-columns: 1fr;
+  }
+  .card {
+    border-bottom: 2px dashed var(--secondary_col_1);
+    border-right: none;
+  }
+  .card:nth-last-child(-n + 3) {
+    border-bottom: 2px dashed var(--secondary_col_1);
+  }
+
+  .risks {
+    grid-template-columns: 1fr;
+  }
+  .hero h1 {
+    font-size: 3em;
+  }
+  .feature {
+    padding: 10px;
+  }
+  .signup form,
+  .app input {
+    max-width: 100%;
+    width: 100%;
+  }
+}
+
+@media (max-width: 600px) {
+  main {
+    padding: 0 5px;
+  }
+  .hero {
+    height: auto;
+    padding: 30px 0;
+  }
+  .hero h1 {
+    font-size: 2em;
+  }
+  .btn {
+    padding: 8px 16px;
+    font-size: 1em;
+  }
+  .invest {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 8px;
+  }
+  .stock-detail h1 {
+    font-size: 1.5em;
+  }
+  .stock-detail h3 {
+    font-size: 1.1em;
+  }
+  .signup input {
+    width: 100%;
+    font-size: 1em;
+  }
+  .card img {
+    width: 60px;
+  }
+  .feature {
+    padding: 5px;
+  }
+  .account-info,
+  .stock-detail {
+    padding: 0 5px;
+  }
+}
