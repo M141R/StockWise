@@ -1,13 +1,9 @@
 # **STOCK WISE**
-## **StockWise : Risk-Aware Stock Decision Support System**
+## **[StockWise](https://stockcompass.azurewebsites.net/) : Risk-Aware Stock Decision Support System**
 
 ## Team Details:
 
 ### Team Name: **IT WORKS**
-
-
-
-
 
 ### TEAM MEMBERS:
 
@@ -92,7 +88,7 @@ http://127.0.0.1:5000/
 
 ## **KEY FILES:**
 
-## 1.**app.py**
+## 1.`app.py`
 
  Main Flask application file that:
 
@@ -104,7 +100,7 @@ Calls stock analysis logic
 
 Renders results to frontend templates
 
-## 2.**stock_analyzer.py**
+## 2.`stock_analyzer.py`
 
 Contains the core logic for:
 
@@ -116,7 +112,7 @@ Contains the core logic for:
 
      *Risk scoring and categorization
 
-## 3.**templates/**
+## 3.`templates/`
 
 HTML files for rendering the frontend UI.
 
